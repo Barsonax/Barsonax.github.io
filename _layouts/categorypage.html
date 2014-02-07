@@ -1,0 +1,6 @@
+---
+layout: default
+---
+
+{% assign posts = site.posts | where: "category", page.title %}
+{% include postslister.html %}

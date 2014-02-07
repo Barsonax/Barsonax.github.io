@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h1 style="margin-bottom: -0.2rem;">{{ page.title }}</h1>
+  <small>
+    <span class="date">
+      {{ page.date | date: "%B %e, %Y" }}
+    </span> |
+    {% for tag in page.tags %}
+    <a href="{{ site.baseurl }}/tags/#{{ tag }}" class="fas fa-tag post-tag">{{ tag }}</a>
+    {% endfor %}
+  </small>
+
+  <div class="entry">
+    {{ content }}
+  </div>
+
+  {% assign category = site.my_categories | where: "slug", post.category %}
+  {% assign category = category[0] %}
+  {% if category %}
+  {% capture category_content %}<a class="label" href="{{ category.url }}" style="background-color:{{ category.color }}">{{
+    category.name }}</a>{% endcapture %}
+  {% endif %}
+
+  {% include disqus.html %}
+</article>
